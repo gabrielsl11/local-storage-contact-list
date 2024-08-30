@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        input {
+            padding: 5px;
+            border-radius: 10px;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, .2);
+        }
+
+        input[type="submit"] {
+            color: white;
+            background: blue;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="hidden" id="id" name="id">
+        <input type="text" id="name" name="name" maxlength="64" placeholder="name" required>
+        <input type="text" id="telephone" name="telephone" maxlength="16" placeholder="telephone" required>
+        <input type="submit" name="save" value="save">
+    </form>
+
+    <div>
+        <input type="search" name="search" placeholder="search" onkeyup="toList(this.value)">
+        <ul>
+            <!--  -->
+        </ul>
+    </div>
+
+    <script>
+        let list = localStorage.getItem('myList');
+
+        var form = document.querySelector('form');
+        var people = document.querySelector('ul');
+
+        if (list) {
+            list = JSON.parse(list);
+        } else {
+            list = [];
+        }
+
+        toList();
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let newPerson = new Object();
+            newPerson.name = document.querySelector('#name').value;
+            newPerson.telephone = document.querySelector('#telephone').value;
+
+            list.push(newPerson);
+
+            // this.reset();
+
+            localStorage.setItem('myList', JSON.stringify(list));
+
+            toList();
+        })
+
+        function toList(filter = '') {
+            people.innerHTML = "";
+            list.forEach((item, key) => {
+                
+                if (item.name.toUpperCase().indexOf(filter.toUpperCase()) >= 0 || filter == "") {
+                    let line = document.createElement('li');
+
+                    let edit = `
+                    <button>[delete]</button>
+                    
+                    <button>[update]</button>
+                    `;
+
+                    line.innerHTML = `Name: ${item.name} Telephone: ${item.telephone} ${edit}`;
+
+                    people.appendChild(line);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
