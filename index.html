@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <title>Contact List</title>
+</head>
+
+<body style="height: 100vh;" class="d-flex flex-column align-items-center justify-content-center gap-5 bg-dark">
+    <header>
+        <h2 class="text-light text-uppercase">Contact List</h2>
+    </header>
+
+    <main class="bg-light d-flex flex-column align-items-center justify-content-center gap-3 p-4 rounded">
+        <form class="d-flex gap-2">
+            <input class="form-control" type="hidden" id="id" name="id">
+            <input class="form-control" type="text" id="name" name="name" maxlength="32" placeholder="Name" required>
+            <input class="form-control" type="number" id="telephone" name="telephone" maxlength="16" placeholder="Telephone" required>
+            <input class="btn btn-success" type="submit" name="save" value="Save">
+        </form>
+
+        <div class="d-flex flex-column gap-2 w-100">
+            <input class="form-control w-100" type="text" name="search" placeholder="Search..." onkeyup="toList(this.value)">
+            
+            <table class="table table-hover table-bordered text-center">
+                <thead>
+                    <th>Name</th>
+                    <th>Telephone</th>
+                    <th>Edit</th>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer style="width: 225px;" class="d-flex flex-wrap justify-content-center gap-2">
+        <a href="https://github.com/gabrielsl11" class="text-white link-underline-dark">
+            <i class="bi bi-github"></i>
+
+            <span>gabrielsl11</span>
+        </a>
+    </footer>
+
+    <script type="text/javascript" src="assets/js/script.js"></script>
+</body>
+
+</html>
